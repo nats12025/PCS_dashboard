@@ -1,87 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Primary Cardiac Sarcoma Dashboard</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f7f9fc;
-      color: #12315b;
-    }
-    header {
-      text-align: center;
-      padding: 24px 12px 8px;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 32px;
-    }
-    header p {
-      margin: 6px 0 0;
-      font-size: 16px;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 16px 12px 32px;
-    }
-    .panel {
-      margin-bottom: 32px;
-      text-align: center;
-    }
-    .panel h2 {
-      margin: 0 0 12px;
-      font-size: 22px;
-    }
-    .panel img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    }
-    footer {
-      text-align: center;
-      font-size: 12px;
-      padding: 16px;
-      color: #555;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Primary Cardiac Sarcoma Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* Your Existing Styles */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fc;
+            color: #12315b;
+        }
+        header {
+            text-align: center;
+            padding: 24px 12px 8px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+        header p {
+            margin: 6px 0 0;
+            font-size: 16px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 12px 32px;
+        }
+        /* NOTE: .panel style is no longer needed but kept for completeness */
+        .panel {
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        .panel h2 {
+            margin: 0 0 12px;
+            font-size: 22px;
+        }
+        /* Existing image style is modified for tab content image */
+        /*
+        .panel img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+        */
+        footer {
+            text-align: center;
+            font-size: 12px;
+            padding: 16px;
+            color: #555;
+        }
+
+        /* --- NEW TAB STYLES --- */
+
+        /* Style the tab container (the row of buttons) */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            border-radius: 8px 8px 0 0; /* Rounded top corners */
+        }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Style the active/current tab button */
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content (where the PNGs are displayed) */
+        .tabcontent {
+            display: none; /* Hides all content initially */
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-top: none;
+            border-radius: 0 0 8px 8px; /* Rounded bottom corners */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Ensure images fit nicely within the content area */
+        .tabcontent img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px; /* Slight radius for images inside the tab */
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Primary Cardiac Sarcoma Dashboard</h1>
-    <p>Supplementary visual panels for the research article.</p>
-  </header>
+    <header>
+        <h1>Primary Cardiac Sarcoma Dashboard</h1>
+        <p>Supplementary visual panels for the research article.</p>
+    </header>
 
-  <div class="container">
-    <div class="panel">
-      <h2>Panel 1. Rarity and Outcomes</h2>
-      <img src="panel1.png" alt="Rarity and outcomes panel">
-    </div>
-    <div class="panel">
-      <h2>Panel 2. Diagnostic Pathway: Current vs AI Augmented</h2>
-      <img src="panel2.png" alt="Diagnostic pathway panel">
-    </div>
-    <div class="panel">
-      <h2>Panel 3. Treatment Decision Matrix for PCS Subtypes</h2>
-      <img src="panel3.png" alt="Treatment decision matrix panel">
-    </div>
-    <div class="panel">
-      <h2>Panel 4. PCS AI Readiness and Risk Radar</h2>
-      <img src="panel4.png" alt="AI readiness radar panel">
-    </div>
-    <div class="panel">
-      <h2>Panel 5. References</h2>
-      <img src="panel5.png" alt="References panel">
-    </div>
-  </div>
+    <div class="container">
+        <div class="tab">
+            <button class="tablinks active" onclick="openPanel(event, 'panel1')">1. Rarity & Outcomes</button>
+            <button class="tablinks" onclick="openPanel(event, 'panel2')">2. Diagnostic Pathway</button>
+            <button class="tablinks" onclick="openPanel(event, 'panel3')">3. Treatment Decision</button>
+            <button class="tablinks" onclick="openPanel(event, 'panel4')">4. AI Readiness</button>
+            <button class="tablinks" onclick="openPanel(event, 'panel5')">5. References</button>
+        </div>
 
-  <footer>
-    Primary Cardiac Sarcoma (PCS) dashboard. Hosted as supplementary material via GitHub Pages.
-  </footer>
+        <div id="panel1" class="tabcontent" style="display:block;">
+            <img src="panel1.png" alt="Rarity and outcomes panel">
+        </div>
+
+        <div id="panel2" class="tabcontent">
+            <img src="panel2.png" alt="Diagnostic pathway panel">
+        </div>
+
+        <div id="panel3" class="tabcontent">
+            <img src="panel3.png" alt="Treatment decision matrix panel">
+        </div>
+
+        <div id="panel4" class="tabcontent">
+            <img src="panel4.png" alt="AI readiness radar panel">
+        </div>
+
+        <div id="panel5" class="tabcontent">
+            <img src="panel5.png" alt="References panel">
+        </div>
+
+    </div>
+
+    <footer>
+        Primary Cardiac Sarcoma (PCS) dashboard. Hosted as supplementary material via GitHub Pages.
+    </footer>
+
+    <script>
+    function openPanel(evt, panelName) {
+      var i, tabcontent, tablinks;
+
+      // 1. Get all elements with class="tabcontent" and hide them
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      // 2. Get all elements with class="tablinks" and remove the "active" class
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+
+      // 3. Show the current tab, and add an "active" class to the button that opened the tab
+      document.getElementById(panelName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
+    // Automatically click the first button when the page loads to show the first panel
+    document.addEventListener("DOMContentLoaded", function() {
+        // Find the first tab button and trigger a click event to display the content
+        var firstTab = document.getElementsByClassName("tablinks")[0];
+        if (firstTab) {
+            firstTab.click();
+        }
+    });
+    </script>
 </body>
 </html>
